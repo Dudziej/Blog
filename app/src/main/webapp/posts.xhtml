@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<h:head>
+
+   <title>Blog</title>
+   <h:outputStylesheet name="bootstrap.css" library="css"/>
+
+</h:head>
+
+<h:body>
+
+   <div class="container">
+
+      <ui:include src="/template/navbar.xhtml"/>
+
+      <div class="row">
+         <div class="col-lg">
+            <div style="justify-content: center; display: flex; text-align: center">
+               <b><h:outputText rendered="#{postController.postRequest.id == null}"
+                                styleClass="" style=" margin-top: 10px"
+                                value="Add post"/></b>
+
+               <b><h:outputText rendered="#{postController.postRequest.id != null}"
+                                styleClass="" style="margin-top: 10px"
+                                value="Edit post"/></b>
+            </div>
+         </div>
+      </div>
+
+      <div class="row">
+         <div class="col-lg">
+
+            <div style="justify-content: center; display: flex; text-align: center">
+               <h:form style="margin-top: 25px">
+
+                  <h:inputHidden value="#{postController.postRequest.id}"/>
+                  <h:inputHidden value="#{postController.postRequest.addedAt}"/>
+
+                  <h:message for="title"/>
+                  <h:inputText id="title" value="#{postController.postRequest.title}" a:placeholder="Title"
+                               styleClass="form-control" style="width: 500px; margin-top: 10px"
+                               required="true" requiredMessage="#{msg['blog.required']}">
+                  </h:inputText>
+
+                  <h:message for="content"/>
+                  <h:inputTextarea id="content" value="#{postController.postRequest.content}" a:placeholder="Content"
+                                   styleClass="form-control" style="width: 500px; margin-top: 10px" rows="20"
+                                   required="true" requiredMessage="#{msg['blog.required']}">
+                  </h:inputTextarea>
+
+                  <h:commandButton value="Save" action="#{postController.save}"
+                                   styleClass="btn btn-success form-button" style="width: 500px; margin-top: 10px"/>
+               </h:form>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <h:outputScript library="js" name="jQuery.js"/>
+   <h:outputScript library="js" name="popper.js"/>
+   <h:outputScript library="js" name="bootstrap.js"/>
+
+</h:body>
+
+</html>

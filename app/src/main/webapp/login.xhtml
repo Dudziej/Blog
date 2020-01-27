@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+
+   <title>Blog</title>
+   <h:outputStylesheet name="bootstrap.css" library="css"/>
+   <h:outputStylesheet name="style.css" library="css"/>
+
+</h:head>
+
+<h:body>
+
+   <div class="container">
+
+      <div class="row">
+         <div class="col-lg form-col">
+            <h:link outcome="index.html">
+               <h:graphicImage name="blog.png" library="img" width="225" height="225"/>
+            </h:link>
+         </div>
+      </div>
+
+      <div class="row">
+         <div class="col-lg form-col">
+            <h:form>
+               <b><h:outputText value="Log in to your account"/></b><br/>
+
+               <h:outputLabel rendered="#{flash.containsKey('error-message')}"
+                              styleClass="alert alert-danger" style="width: 300px" value="#{flash['error-message']}"/>
+
+               <h:message for="username"/>
+               <h:inputText id="username" value="#{loginRequest.username}" a:placeholder="Username"
+                            styleClass="form-control form-input"
+                            required="true" requiredMessage="#{msg['blog.required']}">
+               </h:inputText>
+
+               <h:message for="password"/>
+               <h:inputSecret id="password" value="#{loginRequest.password}" a:placeholder="Password"
+                              styleClass="form-control form-input"
+                              required="true" requiredMessage="#{msg['blog.required']}"/>
+
+               <h:commandButton value="Login" action="#{loginController.login}"
+                                styleClass="btn btn-success form-button"/>
+
+               <br />
+               <br />
+               <h:link value="Want to create a new account?" outcome="register.xhtml"/>
+            </h:form>
+         </div>
+      </div>
+   </div>
+
+</h:body>
+
+</html>
